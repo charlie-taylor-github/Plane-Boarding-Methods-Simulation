@@ -1,0 +1,11 @@
+----| Next
+- create WILMA boarding method
+- create Steffen Perfect boarding method
+- create reverse pyramid boarding method
+
+- implement a data collector class (object in passenger behaviour and is manipulated by individual passengers in that class)
+- create beautiful UI
+
+
+----| Options
+- add some simple animations / more detailed graphics

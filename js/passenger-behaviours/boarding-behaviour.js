@@ -41,19 +41,13 @@ class BoardingBehaviour extends PassengerBehaviour {
         }
         if (clearPath) return;
 
-        for (const row of this.shuffledPastRows) {
-            const atRow =  (Math.round(this.p.position.y) == row);
-            const closeToRow = (Math.abs(row - Math.round(this.p.position.y)) > 0.4); 
-            if (atRow) return;
-            if (closeToRow) return;
-        }
+        const seatRow = Math.floor(this.p.position.y);
 
-        
+        if (this.shuffledPastRows.includes(seatRow)) return;
 
-        this.shuffledPastRows.push(Math.round(this.p.position.y));
+
+        this.shuffledPastRows.push(seatRow);
         this.p.startShuffling();
-        console.log(this.shuffledPastRows);
-
     }
 
     #tryMoveDownAisle(interval, passengers) {

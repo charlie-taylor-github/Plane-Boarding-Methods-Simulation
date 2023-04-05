@@ -4,7 +4,7 @@ import BoardingBehaviour from "./passenger-behaviours/boarding-behaviour.js";
 class Passenger {
     constructor(
         position, seat, aisleColumn, 
-        needsToStore=true, storeTime=0.2, shuffleTime=1, moveSpeed=3, selected=false
+        needsToStore=true, storeTime=0.2, shuffleTime=0.2, moveSpeed=10, selected=false
         ) {
         this.position = position;
         this.seat = seat;

@@ -1,14 +1,13 @@
-import Passenger from "../passenger.js";
 import Vector2 from "../vector-2.js";
 import BoardingStrategy from "./boarding-strategy.js";
 
 
 class RandomStrategy extends BoardingStrategy {
-    constructor() {
-        super();
+    constructor(generator) {
+        super(generator);
     }
 
-    shuffle(array) {
+    #shuffle(array) {
         let currentIndex = array.length, randomIndex;
         while (currentIndex != 0) {
             randomIndex = Math.floor(Math.random() * currentIndex);
@@ -19,15 +18,24 @@ class RandomStrategy extends BoardingStrategy {
         return array;
     }
 
-    getPassengers(rows, columns, aisleColumn) {
-        const seats = this.getAllSeats(rows, columns, aisleColumn);
-        this.shuffle(seats);
-        const passengers = [];
-        for (let i=0; i<seats.length; i++) {
-            const seat = seats[i];
-            passengers.push(new Passenger(new Vector2(-i, aisleColumn), seat, aisleColumn));
+    #getAllSeats(rows, columns, aisleColumn) {
+        const seats = [];
+        let startColumn = 1;
+        if (aisleColumn < 1) startColumn++;
+        let finalColumn = columns+1;
+        if (aisleColumn > columns) finalColumn--;
+        for (let row=1; row <= rows; row++) {
+            for (let col=startColumn; col <= finalColumn; col++) {
+                if (col != aisleColumn) seats.push([row, col]);
+            }
         }
-        return passengers;
+        return seats;
+    }
+
+    getSeats(rows, columns, aisleColumn) {
+        const seats = this.#getAllSeats(rows, columns, aisleColumn);
+        this.#shuffle(seats);
+        return seats;
     }
 }
 
