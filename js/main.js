@@ -5,13 +5,15 @@ import PassengerGenerator from "./passenger-generator.js";
 import RandomStrategy from "./boarding-strategies/random-strategy.js";
 import FrontToBackStrategy from "./boarding-strategies/front-back-strategy.js";
 import BackToFrontStrategy from "./boarding-strategies/back-front-strategy.js";
+import ReversePyramidStrategy from "./boarding-strategies/reverse-pyramid-strategy.js";
+import SteffenPerfectStrategy from "./boarding-strategies/steffen-perfect-strategy.js";
 
 const canvas = $('#main-window')[0];
 const window = new Window(canvas, 60);
 
-const generator = new PassengerGenerator(10, 0.2, 0.2, 0.2, 0.2);
-const boardingStrategy = new BackToFrontStrategy(generator);
-const plane = new Plane(boardingStrategy, 20, 15, 10);
+const generator = new PassengerGenerator(10, 0.2, 0, 0.5, 0);
+const boardingStrategy = new SteffenPerfectStrategy(generator);
+const plane = new Plane(boardingStrategy, 9, 6, 4);
 const visualiser = new Visualiser(window, plane);
 
 const update = (ctx, interval) => {
