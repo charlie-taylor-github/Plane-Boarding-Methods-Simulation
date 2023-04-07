@@ -3,9 +3,8 @@ import Vector2 from "./vector-2.js";
 class Window {
     #updateCallback;
 
-    constructor(canvas, fps=60) {
+    constructor(canvas) {
         this.canvas = canvas;
-        this.fps = fps;
         this.size = new Vector2(canvas.width, canvas.height);
         this.ctx = canvas.getContext('2d');
         this.#updateCallback = ()=>{};
@@ -23,7 +22,7 @@ class Window {
     startLoop() {
         let now;
         let then = Date.now();
-        let interval = 1000 / this.fps;
+        let interval = 1000 / 30;
         let delta;
         const animate = () => {
             requestAnimationFrame(animate);

@@ -10,8 +10,11 @@ class PassengerGenerator {
     constructor(
         moveSpeed=1,
         meanStoreTime=1, storeTimeDeviation=0, 
-        meanShuffleTime=1, shuffleTimeDeviation=0
+        meanShuffleTime=1, shuffleTimeDeviation=0,
+        dataCollector
     ) {
+        this.dataCollector = dataCollector;
+        
         this.#moveSpeed = moveSpeed;
         this.#meanStoreTime = meanStoreTime;
         this.#storeTimeDeviation = storeTimeDeviation;
@@ -25,7 +28,7 @@ class PassengerGenerator {
         return new Passenger(
             pos, seat, aisleColumn, 
             true, storeT, shuffleT, 
-            this.#moveSpeed);
+            this.#moveSpeed, false, this.dataCollector);
     }
 
     #getNewStoreTime() {

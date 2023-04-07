@@ -3,8 +3,9 @@ import BoardingBehaviour from "./passenger-behaviours/boarding-behaviour.js";
 
 class Passenger {
     constructor(
-        position, seat, aisleColumn, 
-        needsToStore=true, storeTime=0.2, shuffleTime=0.2, moveSpeed=10, selected=false
+        position, seat, aisleColumn, needsToStore=true, 
+        storeTime=0.2, shuffleTime=0.2, moveSpeed=10, 
+        selected=false, dataCollector
         ) {
         this.position = position;
         this.seat = seat;
@@ -13,6 +14,7 @@ class Passenger {
         this.shuffleTime = shuffleTime;
         this.moveSpeed = moveSpeed;
         this.selected = selected;
+        this.dataCollector = dataCollector;
 
         this.seated = false;
         this.storing = false;

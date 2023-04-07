@@ -28,7 +28,6 @@ class PassengerBehaviour {
 
     getCanMoveInDirection(passengers, dir) {
         const axis = this.#getAxis(dir);
-        const isMovingForward = this.#getIsMovingForward(dir);
         if (axis == 'y') return true;
         return this.getIsClearPath(passengers, dir);
     }

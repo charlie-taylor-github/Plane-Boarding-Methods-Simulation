@@ -11,8 +11,7 @@ class Plane {
         this.passengers = boardingStrategy.getPassengers(rows, columns, aisleColumn);
         // this.passengers = [
         //     new Passenger(new Vector2(0, 4), [4, 7], 4, true, 1, 1, 3, true),
-        //     new Passenger(new Vector2(4, 6), [4, 6]),
-        //     new Passenger(new Vector2(4, 5), [4, 5])
+        //     new Passenger(new Vector2(-1, 4), [4, 6])
         // ];
     }
 
