@@ -13,8 +13,6 @@ class BoardingBehaviour extends PassengerBehaviour {
         this.#updateIsShuffling(passengers);
         this.#tryMoveDownAisle(interval, passengers);
         this.#tryMoveVerticallyToSeat(interval, passengers);
-
-        
     }
 
     #updateIsSeated() {
@@ -80,6 +78,7 @@ class BoardingBehaviour extends PassengerBehaviour {
     #ensureIsStoringIfNeeded() {
         if (this.p.needsToStore && !this.p.storing) {
             this.p.startStoringLuggage();
+            this.p.dataCollector.addStorageStop();
         }
     }
 

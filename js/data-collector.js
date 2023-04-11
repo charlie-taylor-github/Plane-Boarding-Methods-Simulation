@@ -24,9 +24,10 @@ class DataCollector {
         this.totalBoardingTime += interval;
         this.averageBoardingTime = this.totalBoardingTime / this.boardedPassengers;
         this.averageSeatShuffles = this.totalSeatShuffles / this.totalPassengers;
+        this.averageStorageStops = this.totalStorageStops / this.boardedPassengers;
         this.totalWaitingTime += interval * this.#currentPassengersWaiting;
         this.averageWaitingTime = this.totalWaitingTime / this.boardedPassengers;
-        console.log(this.averageWaitingTime);
+        console.log(this.averageSeatShuffles);
     }
 
     addSeatedPassenger() {
@@ -43,6 +44,10 @@ class DataCollector {
 
     removeWaitingPassenger() {
         this.#currentPassengersWaiting--;
+    }
+
+    addStorageStop() {
+        this.totalStorageStops++;
     }
 }
 

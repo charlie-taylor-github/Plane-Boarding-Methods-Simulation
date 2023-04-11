@@ -1,5 +1,4 @@
 ----| Next
-- implement a data collector class (object in passenger behaviour and is manipulated by individual passengers in that class)
 - create beautiful UI
 
 

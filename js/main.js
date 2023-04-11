@@ -15,11 +15,18 @@ const window = new Window(canvas);
 
 const rows = 9;
 const cols = 6;
+const aisleColumn = 4;
+const moveSpeed = 4;
+const meanStoreTime = 0.5;
+const storeTimeDeviation = 0;
+const meanShuffleTime = 0.5;
+const shuffleTimeDeviation = 0;
+const Strategy = RandomStrategy;
 
 const dataCollector = new DataCollector(rows*cols);
-const generator = new PassengerGenerator(4, 0.2, 0, 0.5, 0, dataCollector);
-const boardingStrategy = new FrontToBackStrategy(generator);
-const plane = new Plane(boardingStrategy, rows, cols, 4);
+const generator = new PassengerGenerator(moveSpeed, meanStoreTime, storeTimeDeviation, meanShuffleTime, shuffleTimeDeviation, dataCollector);
+const boardingStrategy = new Strategy(generator);
+const plane = new Plane(boardingStrategy, rows, cols, aisleColumn);
 const visualiser = new Visualiser(window, plane);
 
 const update = (ctx, interval) => {
