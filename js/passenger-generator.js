@@ -6,29 +6,31 @@ class PassengerGenerator {
     #storeTimeDeviation;
     #meanShuffleTime;
     #shuffleTimeDeviation;
+    #animationSpeed;
 
     constructor(
-        moveSpeed=1,
-        meanStoreTime=1, storeTimeDeviation=0, 
-        meanShuffleTime=1, shuffleTimeDeviation=0,
-        dataCollector
+        moveSpeed = 1,
+        meanStoreTime = 1, storeTimeDeviation = 0,
+        meanShuffleTime = 1, shuffleTimeDeviation = 0,
+        dataCollector, animationSpeed
     ) {
-        this.dataCollector = dataCollector;
-        
         this.#moveSpeed = moveSpeed;
         this.#meanStoreTime = meanStoreTime;
         this.#storeTimeDeviation = storeTimeDeviation;
         this.#meanShuffleTime = meanShuffleTime;
         this.#shuffleTimeDeviation = shuffleTimeDeviation;
+        this.dataCollector = dataCollector;
+        this.#animationSpeed = animationSpeed;
     }
 
     getNewPassenger(pos, seat, aisleColumn) {
         const storeT = this.#getNewStoreTime();
         const shuffleT = this.#getNewShuffleTime();
         return new Passenger(
-            pos, seat, aisleColumn, 
-            true, storeT, shuffleT, 
-            this.#moveSpeed, false, this.dataCollector);
+            pos, seat, aisleColumn,
+            true, storeT, shuffleT,
+            this.#moveSpeed, false,
+            this.dataCollector, this.#animationSpeed);
     }
 
     #getNewStoreTime() {
@@ -42,7 +44,7 @@ class PassengerGenerator {
     #getNewValue(mean, deviation) {
         const u1 = Math.random();
         const u2 = Math.random();
-        const z = Math.sqrt(-2*Math.log(u1)) * Math.cos(2*Math.PI * u2);
+        const z = Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2);
         return (z * deviation) + mean;
     }
 }

@@ -3,10 +3,10 @@ import BoardingBehaviour from "./passenger-behaviours/boarding-behaviour.js";
 
 class Passenger {
     constructor(
-        position, seat, aisleColumn, needsToStore=true, 
-        storeTime=0.2, shuffleTime=0.2, moveSpeed=10, 
-        selected=false, dataCollector
-        ) {
+        position, seat, aisleColumn, needsToStore = true,
+        storeTime = 0.2, shuffleTime = 0.2, moveSpeed = 10,
+        selected = false, dataCollector, animationSpeed
+    ) {
         this.position = position;
         this.seat = seat;
         this.needsToStore = needsToStore;
@@ -15,6 +15,7 @@ class Passenger {
         this.moveSpeed = moveSpeed;
         this.selected = selected;
         this.dataCollector = dataCollector;
+        this.animationSpeed = animationSpeed;
 
         this.seated = false;
         this.storing = false;
@@ -40,22 +41,22 @@ class Passenger {
     }
 
     getIsInColumn(col) {
-        return this.position.y > col-1 && this.position.y < col+1
+        return this.position.y > col - 1 && this.position.y < col + 1
     }
 
     getIsInRow(row) {
-        return this.position.x > row-1 && this.position.x < row+1
+        return this.position.x > row - 1 && this.position.x < row + 1
     }
 
     startStoringLuggage() {
         this.storing = true;
         this.needsToStore = false;
-        setTimeout(() => this.storing = false, this.storeTime * 1000);
+        setTimeout(() => this.storing = false, this.storeTime * 1000 / this.animationSpeed);
     }
 
     startShuffling() {
         this.shuffling = true;
-        setTimeout(() => this.shuffling = false, this.shuffleTime * 1000);
+        setTimeout(() => this.shuffling = false, this.shuffleTime * 1000 / this.animationSpeed);
     }
 }
 
