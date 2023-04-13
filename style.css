@@ -16,7 +16,7 @@ body {
 /* GRIDS */
 .row {
     margin-bottom: 10px;
-    padding-left: 15px;
+    padding-left: 1vw;
     --bs-gutter-x: 0;
     margin-left: 0;
     /* border: solid red 3px; */
@@ -38,8 +38,8 @@ body {
 
 #config-menu {
     width: 100vw;
-    padding: 10px;
-    padding-right: 50px;
+    /* padding: 10px; */
+    padding-right: 5vw;
     /* background-color: blue; */
     position: absolute;
 
@@ -47,6 +47,7 @@ body {
 
 .config-section {
     margin-bottom: 5vh;
+    padding-left: 3vw;
 }
 
 footer {
