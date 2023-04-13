@@ -1,7 +1,3 @@
-----| Next
-- create beautiful UI
-
-
 ----| Options
 - add some simple animations / more detailed graphics
 - implement random WILMA boarding method (same as random but window seats are filled first)

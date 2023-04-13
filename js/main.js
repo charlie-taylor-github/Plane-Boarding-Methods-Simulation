@@ -91,6 +91,10 @@ const update = (ctx, interval) => {
     if (simulation) {
         simulation.update(ctx, interval);
         updateDataText();
+
+        const rangeValue = Number($('#scale-range')[0].value);
+        const sf = rangeValue / 50;
+        simulation.setScaleFactor(sf);
     }
 
     if (currentWindow == 'config') {

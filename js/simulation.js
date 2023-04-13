@@ -10,7 +10,6 @@ import ReversePyramidStrategy from "./boarding-strategies/reverse-pyramid-strate
 import SteffenPerfectStrategy from "./boarding-strategies/steffen-perfect-strategy.js";
 
 class Simulation {
-    #dataCollector;
     #generator;
     #boardingStrategy;
     #plane;
@@ -39,6 +38,10 @@ class Simulation {
         this.#plane.update(interval * this.#animationSpeed);
         this.dataCollector.update(interval * this.#animationSpeed);
         this.#visualiser.update(ctx, interval * this.#animationSpeed);
+    }
+
+    setScaleFactor(sf) {
+        this.#visualiser.sf = sf;
     }
 
     #getStrategy(strategyName) {

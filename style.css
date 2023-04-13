@@ -136,19 +136,19 @@ input::-webkit-inner-spin-button {
 }
 
 input[type=range]::-webkit-slider-thumb {
-    background: var(--bg-color);
+    background: var(--primary-color);
 }
 
 input[type=range]::-moz-range-thumb {
-    background: var(--bg-color);
+    background: var(--primary-color);
 }
 
 input[type=range]::-ms-thumb {
-    background: var(--bg-color);
+    background: var(--primary-color);
 }
 
 input[type=range]::-webkit-slider-runnable-track {
-    background: var(--primary-color);
+    background: white;
 }
 
 /* ---- */
