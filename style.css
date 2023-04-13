@@ -17,6 +17,7 @@ body {
 .row {
     margin-bottom: 10px;
     padding-left: 15px;
+    --bs-gutter-x: 0;
     margin-left: 0;
     /* border: solid red 3px; */
 }
@@ -53,6 +54,11 @@ footer {
     color: var(--highlight-color);
     margin-top: 95vh;
     height: 30px;
+}
+
+.data-section {
+    /* border: solid black 3px; */
+    margin-bottom: 20px;
 }
 
 /* ---- */

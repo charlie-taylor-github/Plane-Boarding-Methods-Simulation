@@ -1,9 +1,8 @@
 class DataCollector {
-    #currentPassengersWaiting;
-
     constructor(totalPassengers) {
         this.totalPassengers = totalPassengers;
         this.boardedPassengers = 0;
+        this.percentageBoarded = 0;
 
         this.totalBoardingTime = 0;
         this.averageBoardingTime = 0;
@@ -17,7 +16,7 @@ class DataCollector {
         this.totalWaitingTime = 0;
         this.averageWaitingTime = 0;
 
-        this.#currentPassengersWaiting = 0;
+        this.currentPassengersWaiting = 0;
     }
 
     update(interval) {
@@ -25,8 +24,9 @@ class DataCollector {
         this.averageBoardingTime = this.totalBoardingTime / this.boardedPassengers;
         this.averageSeatShuffles = this.totalSeatShuffles / this.totalPassengers;
         this.averageStorageStops = this.totalStorageStops / this.boardedPassengers;
-        this.totalWaitingTime += interval * this.#currentPassengersWaiting;
+        this.totalWaitingTime += interval * this.currentPassengersWaiting;
         this.averageWaitingTime = this.totalWaitingTime / this.boardedPassengers;
+        this.percentageBoarded = 100 * this.boardedPassengers / this.totalPassengers;
     }
 
     addSeatedPassenger() {
@@ -38,11 +38,11 @@ class DataCollector {
     }
 
     addWaitingPassenger() {
-        this.#currentPassengersWaiting++;
+        this.currentPassengersWaiting++;
     }
 
     removeWaitingPassenger() {
-        this.#currentPassengersWaiting--;
+        this.currentPassengersWaiting--;
     }
 
     addStorageStop() {

@@ -24,11 +24,11 @@ class Simulation {
         strategyName, animationSpeed, window
     ) {
         this.#animationSpeed = animationSpeed;
-        this.#dataCollector = new DataCollector(rows * cols);
+        this.dataCollector = new DataCollector(rows * cols);
         this.#generator = new PassengerGenerator(
             moveSpeed, meanStoreTime, storeTimeDeviation,
             meanShuffleTime, shuffleTimeDeviation,
-            this.#dataCollector, animationSpeed);
+            this.dataCollector, animationSpeed);
         const Strategy = this.#getStrategy(strategyName);
         this.#boardingStrategy = new Strategy(this.#generator);
         this.#plane = new Plane(this.#boardingStrategy, rows, cols, aisleCol);
@@ -37,7 +37,7 @@ class Simulation {
 
     update(ctx, interval) {
         this.#plane.update(interval * this.#animationSpeed);
-        this.#dataCollector.update(interval * this.#animationSpeed);
+        this.dataCollector.update(interval * this.#animationSpeed);
         this.#visualiser.update(ctx, interval * this.#animationSpeed);
     }
 

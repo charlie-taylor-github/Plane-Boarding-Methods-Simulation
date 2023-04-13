@@ -60,9 +60,36 @@ const swapWindows = () => {
 }
 
 
+const updateDataText = () => {
+    const dc = simulation.dataCollector;
+    const data = {
+        'total-passengers': dc.totalPassengers,
+        'seated-passengers': dc.boardedPassengers,
+        'percentage-seated': dc.percentageBoarded,
+        'passengers-waiting': dc.currentPassengersWaiting,
+        'time-elapsed': dc.totalBoardingTime,
+        'avg-boarding-time': dc.averageBoardingTime,
+        'total-time-waiting': dc.totalWaitingTime,
+        'avg-time-waiting': dc.averageWaitingTime,
+        'seat-shuffles': dc.totalSeatShuffles,
+        'avg-seat-shuffles': dc.averageSeatShuffles,
+        'storage-stops': dc.totalStorageStops,
+        'avg-storage-stops': dc.averageStorageStops
+    };
+
+    for (const [id, value] of Object.entries(data)) {
+        let fValue = value;
+        if (Number.isNaN(fValue) || !Number.isFinite(fValue)) fValue = 0;
+        if (!Number.isInteger(fValue)) fValue = fValue.toFixed(2);
+        $(`#${id}`)[0].value = fValue;
+    }
+}
+
+
 const update = (ctx, interval) => {
     if (simulation) {
         simulation.update(ctx, interval);
+        updateDataText();
     }
 }
 
