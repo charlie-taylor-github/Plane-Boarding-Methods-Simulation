@@ -162,6 +162,10 @@
                         <option value="reversepyramid">Reverse Pyramid Boarding</option>
                         <option value="steffenperfect">Steffen Perfect Boarding</option>
                     </select></div>
+                <div class="row">
+                    <h3 id="strategies-disabled-text" hidden>some strategies are disabled as they require the aisle to
+                        be in the middle column</h3>
+                </div>
             </div>
 
             <div id="animation-speed-config-section" class="col-sm-12 col-md-6 config-section">
@@ -189,15 +193,16 @@
             </div>
             <div class="col">
                 <canvas id="main-window"></canvas>
-
             </div>
         </div>
         <div class="row">
             <div class="col-1"></div>
-            <div class="col">
+            <div class="col-1">
                 <button id="key-btn" data-bs-toggle="modal" data-bs-target="#modal">key</button>
             </div>
-
+            <div class="col-8">
+                <input type="range" class="form-range">
+            </div>
         </div>
 
         <div class="row">

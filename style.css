@@ -104,6 +104,11 @@ sup {
     cursor: pointer;
 }
 
+#strategies-disabled-text {
+    color: var(--secondary-color);
+    font-size: 1rem;
+}
+
 /* ---- */
 
 
@@ -128,6 +133,22 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    background: var(--bg-color);
+}
+
+input[type=range]::-moz-range-thumb {
+    background: var(--bg-color);
+}
+
+input[type=range]::-ms-thumb {
+    background: var(--bg-color);
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    background: var(--primary-color);
 }
 
 /* ---- */

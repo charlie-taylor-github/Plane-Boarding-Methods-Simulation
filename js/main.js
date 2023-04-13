@@ -92,6 +92,24 @@ const update = (ctx, interval) => {
         simulation.update(ctx, interval);
         updateDataText();
     }
+
+    if (currentWindow == 'config') {
+        const aisleCol = Number($('#aisle-col')[0].value);
+        const cols = Number($('#plane-cols')[0].value);;
+
+        if (cols / 2 != aisleCol - 1) {
+            const optionValues = ['steffenperfect', 'reversepyramid'];
+            for (const v of optionValues) {
+                const el = $(`option[value="${v}"`)[0];
+                el.disabled = true;
+            }
+
+            $('#strategies-disabled-text')[0].hidden = false;
+        }
+        else {
+            $('#strategies-disabled-text')[0].hidden = true;
+        }
+    }
 }
 
 
