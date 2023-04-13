@@ -1,5 +1,6 @@
 import Vector2 from "./vector-2.js";
 
+
 class Window {
     #updateCallback;
 
@@ -7,7 +8,7 @@ class Window {
         this.canvas = canvas;
         this.size = new Vector2(canvas.width, canvas.height);
         this.ctx = canvas.getContext('2d');
-        this.#updateCallback = ()=>{};
+        this.#updateCallback = () => { };
     }
 
     setUpdate(update) {
@@ -37,5 +38,6 @@ class Window {
         animate();
     }
 }
+
 
 export default Window;

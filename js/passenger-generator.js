@@ -1,5 +1,6 @@
 import Passenger from "./passenger.js";
 
+
 class PassengerGenerator {
     #moveSpeed;
     #meanStoreTime;
@@ -48,5 +49,6 @@ class PassengerGenerator {
         return (z * deviation) + mean;
     }
 }
+
 
 export default PassengerGenerator;

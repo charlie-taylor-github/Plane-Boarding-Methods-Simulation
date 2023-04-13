@@ -1,5 +1,6 @@
 import Vector2 from "../vector-2.js";
 
+
 class BoardingStrategy {
     constructor(generator) {
         this.generator = generator;
@@ -8,7 +9,7 @@ class BoardingStrategy {
     getPassengers(rows, columns, aisleColumn) {
         const seats = this.getSeats(rows, columns, aisleColumn);
         const passengers = [];
-        for (let i=0; i<seats.length; i++) {
+        for (let i = 0; i < seats.length; i++) {
             const seat = seats[i];
             const p = this.generator.getNewPassenger(new Vector2(-i, aisleColumn), seat, aisleColumn);
             passengers.push(p);

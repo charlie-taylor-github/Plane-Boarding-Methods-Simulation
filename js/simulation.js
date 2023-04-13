@@ -2,12 +2,12 @@ import DataCollector from "./data-collector.js";
 import PassengerGenerator from "./passenger-generator.js";
 import Plane from "./plane.js";
 import Visualiser from "./visualiser.js";
-
 import RandomStrategy from "./boarding-strategies/random-strategy.js";
 import FrontToBackStrategy from "./boarding-strategies/front-back-strategy.js";
 import BackToFrontStrategy from "./boarding-strategies/back-front-strategy.js";
 import ReversePyramidStrategy from "./boarding-strategies/reverse-pyramid-strategy.js";
 import SteffenPerfectStrategy from "./boarding-strategies/steffen-perfect-strategy.js";
+
 
 class Simulation {
     #generator;
@@ -31,7 +31,7 @@ class Simulation {
         const Strategy = this.#getStrategy(strategyName);
         this.#boardingStrategy = new Strategy(this.#generator);
         this.#plane = new Plane(this.#boardingStrategy, rows, cols, aisleCol);
-        this.#visualiser = new Visualiser(window, this.#plane);
+        this.#visualiser = new Visualiser(this.#plane);
     }
 
     update(ctx, interval) {
@@ -59,5 +59,6 @@ class Simulation {
         }
     }
 }
+
 
 export default Simulation;

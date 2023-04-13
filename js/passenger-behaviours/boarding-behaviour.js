@@ -1,13 +1,14 @@
 import PassengerBehaviour from "./passenger-behaviour.js";
 import Vector2 from "../vector-2.js";
 
+
 class BoardingBehaviour extends PassengerBehaviour {
     constructor(passenger, aisleColumn) {
         super(passenger, aisleColumn);
         this.shuffledPastRows = [];
         this.waiting = false;
     }
-    
+
     update(interval, passengers) {
         this.#updateIsSeated();
         this.#updateIsShuffling(passengers);
@@ -44,11 +45,9 @@ class BoardingBehaviour extends PassengerBehaviour {
 
     #tryMoveDownAisle(interval, passengers) {
         const waiting = !this.getCanMoveInDirection(passengers, new Vector2(1, 0));
-        
         if (this.waiting && !waiting) {
             this.p.dataCollector.removeWaitingPassenger();
         }
-
         if (this.p.seated) return;
         if (this.p.storing) return;
         if (this.#getReachedSeatRow()) {
@@ -56,7 +55,6 @@ class BoardingBehaviour extends PassengerBehaviour {
             return this.p.position.x = this.p.seat[0];
         }
         this.tryMoveInDirection(interval, passengers, new Vector2(1, 0));
-
         if (waiting && !this.waiting) {
             this.p.dataCollector.addWaitingPassenger();
         }
@@ -87,5 +85,6 @@ class BoardingBehaviour extends PassengerBehaviour {
         if (!this.p.seatIsAbove) this.tryMoveInDirection(interval, passengers, new Vector2(0, -1));
     }
 }
+
 
 export default BoardingBehaviour;

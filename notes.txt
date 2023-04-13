@@ -1,4 +1,0 @@
-----| Options
-- add some simple animations / more detailed graphics
-- implement random WILMA boarding method (same as random but window seats are filled first)
-- add auto scaler in the visualiser - it uses canvas size and #rows/columns to size everything. make it toggleable in constructor

@@ -3,22 +3,24 @@ import Simulation from "./simulation.js";
 
 const startBtn = $('#start-txt')[0];
 const backBtn = $('#back-btn')[0];
-
 const canvas = $('#main-window')[0];
 const window = new Window(canvas);
 
 let simulation = null;
 let currentWindow = 'config';
 
-const widthHeightRatio = 85 / 35
-const width = 2000;
-
-canvas.width = width;
-canvas.height = width / widthHeightRatio;
 
 const startSimulation = () => {
     setSimulation();
     swapWindows();
+}
+
+
+const setCanvasDimensions = () => {
+    const widthHeightRatio = 85 / 35
+    const width = 2000;
+    canvas.width = 2000;
+    canvas.height = width / widthHeightRatio;
 }
 
 
@@ -33,7 +35,6 @@ const setSimulation = () => {
     const shuffleTimeDeviation = Number($('#shuffle-dev')[0].value);
     const strategyName = $('#strategy')[0].value;
     const animationSpeed = Number($('#animation-speed')[0].value);
-
     simulation = new Simulation(
         rows, cols, aisleCol, moveSpeed,
         meanStoreTime, storeTimeDeviation,
@@ -46,7 +47,6 @@ const setSimulation = () => {
 const swapWindows = () => {
     const configSection = $('#config-menu')[0];
     const simSection = $('#simulation-section')[0];
-
     document.body.scrollTop = document.documentElement.scrollTop = 0;
     if (currentWindow == 'config') {
         currentWindow = 'simulation';
@@ -77,7 +77,6 @@ const updateDataText = () => {
         'storage-stops': dc.totalStorageStops,
         'avg-storage-stops': dc.averageStorageStops
     };
-
     for (const [id, value] of Object.entries(data)) {
         let fValue = value;
         if (Number.isNaN(fValue) || !Number.isFinite(fValue)) fValue = 0;
@@ -87,42 +86,55 @@ const updateDataText = () => {
 }
 
 
+const updateScale = () => {
+    const rangeValue = Number($('#scale-range')[0].value);
+    const sf = rangeValue / 50;
+    simulation.setScaleFactor(sf);
+}
+
+
 const update = (ctx, interval) => {
-    if (simulation) {
+    if (currentWindow == 'config') {
+        updateDisabledStrategies();
+    } else {
         simulation.update(ctx, interval);
         updateDataText();
-
-        const rangeValue = Number($('#scale-range')[0].value);
-        const sf = rangeValue / 50;
-        simulation.setScaleFactor(sf);
+        updateScale();
     }
+}
 
-    if (currentWindow == 'config') {
-        const aisleCol = Number($('#aisle-col')[0].value);
-        const cols = Number($('#plane-cols')[0].value);;
 
-        if (cols / 2 != aisleCol - 1) {
-            const optionValues = ['steffenperfect', 'reversepyramid'];
-            for (const v of optionValues) {
-                const el = $(`option[value="${v}"`)[0];
-                el.disabled = true;
-            }
+const updateDisabledStrategies = () => {
+    const disableTxt = $('#strategies-disabled-text')[0];
+    const sym = getColsSymmetrical();
+    setDisabledOptions(!sym);
+    disableTxt.hidden = sym;
+}
 
-            $('#strategies-disabled-text')[0].hidden = false;
-        }
-        else {
-            $('#strategies-disabled-text')[0].hidden = true;
-        }
+
+const getColsSymmetrical = () => {
+    const aisleCol = Number($('#aisle-col')[0].value);
+    const cols = Number($('#plane-cols')[0].value);;
+    return cols / 2 == aisleCol - 1;
+}
+
+
+const setDisabledOptions = (disabled) => {
+    const optionValues = ['steffenperfect', 'reversepyramid'];
+    for (const v of optionValues) {
+        const el = $(`option[value="${v}"`)[0]
+        el.disabled = disabled;
     }
 }
 
 
 const init = () => {
+    setCanvasDimensions();
+    startBtn.onclick = startSimulation;
+    backBtn.onclick = swapWindows;
     window.setUpdate(update);
     window.startLoop();
 }
 
 
-startBtn.onclick = startSimulation;
-backBtn.onclick = swapWindows;
 onload = init;

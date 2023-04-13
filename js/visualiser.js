@@ -1,13 +1,11 @@
 import Vector2 from "./vector-2.js";
 
 class Visualiser {
-    #window;
     #plane;
     #seatSize;
     #passengerRadius;
 
-    constructor(window, plane) {
-        this.#window = window;
+    constructor(plane) {
         this.#plane = plane;
         this.#seatSize = new Vector2(50, 50);
         this.#passengerRadius = 15;
@@ -74,5 +72,6 @@ class Visualiser {
         ctx.fill();
     }
 }
+
 
 export default Visualiser;

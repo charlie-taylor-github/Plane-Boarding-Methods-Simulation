@@ -84,4 +84,5 @@ class PassengerBehaviour {
     }
 }
 
+
 export default PassengerBehaviour;

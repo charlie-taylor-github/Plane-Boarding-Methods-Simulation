@@ -1,6 +1,7 @@
 import Vector2 from "./vector-2.js";
 import BoardingBehaviour from "./passenger-behaviours/boarding-behaviour.js";
 
+
 class Passenger {
     constructor(
         position, seat, aisleColumn, needsToStore = true,
@@ -59,5 +60,6 @@ class Passenger {
         setTimeout(() => this.shuffling = false, this.shuffleTime * 1000 / this.animationSpeed);
     }
 }
+
 
 export default Passenger;

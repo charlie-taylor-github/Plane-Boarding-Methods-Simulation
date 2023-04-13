@@ -51,4 +51,5 @@ class DataCollector {
     }
 }
 
+
 export default DataCollector;
