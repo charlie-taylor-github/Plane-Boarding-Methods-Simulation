@@ -56,7 +56,8 @@ const swapWindows = () => {
     }
     currentWindow = 'config';
     gsap.to(configSection, { x: '0vw', duration: 1, ease: 'power2' });
-    gsap.to(simSection, { x: '100vw', duration: 1, ease: 'power2' });
+    gsap.to(simSection, { x: '100vw', duration: 1, ease: 'power2' })
+        .then(() => { simulation = null });
 }
 
 

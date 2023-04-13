@@ -20,10 +20,11 @@ class DataCollector {
     }
 
     update(interval) {
+        if (this.boardedPassengers == this.totalPassengers) return;
         this.totalBoardingTime += interval;
         this.averageBoardingTime = this.totalBoardingTime / this.boardedPassengers;
         this.averageSeatShuffles = this.totalSeatShuffles / this.totalPassengers;
-        this.averageStorageStops = this.totalStorageStops / this.boardedPassengers;
+        this.averageStorageStops = this.totalStorageStops / this.totalPassengers;
         this.totalWaitingTime += interval * this.currentPassengersWaiting;
         this.averageWaitingTime = this.totalWaitingTime / this.boardedPassengers;
         this.percentageBoarded = 100 * this.boardedPassengers / this.totalPassengers;
