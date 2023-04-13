@@ -22,11 +22,16 @@ class Visualiser {
 
     #drawPassengers(ctx) {
         for (const p of this.#plane.passengers) {
-            const x = p.position.x * this.#seatSize.x + this.#seatSize.x / 2;
-            const y = p.position.y * this.#seatSize.y + this.#seatSize.y / 2;
-            const color = this.#getPassengerColor(p);
-            this.#drawCircle(ctx, x, y, this.#passengerRadius, color)
+            this.#drawPassenger(ctx, p);
         }
+    }
+
+    #drawPassenger(ctx, p) {
+        const x = p.position.x * this.#seatSize.x + this.#seatSize.x / 2;
+        const y = p.position.y * this.#seatSize.y + this.#seatSize.y / 2;
+        const color = this.#getPassengerColor(p);
+        this.#drawCircle(ctx, x, y, this.#passengerRadius, 'black');
+        this.#drawCircle(ctx, x, y, this.#passengerRadius * 0.8, color);
     }
 
     #drawSeats(ctx) {
@@ -49,10 +54,11 @@ class Visualiser {
     }
 
     #getPassengerColor(p) {
-        if (p.seated) return "green";
-        if (p.storing) return "red";
-        if (p.shuffling) return "purple";
-        return "blue";
+        if (p.seated) return "#7ACE5D";
+        if (p.storing) return "#00A3FF";
+        if (p.shuffling) return "#DB00FF";
+        if (p.behaviour.waiting) return "#FF5C00";
+        return "#DEDEDE";
     }
 
     #drawSquare(ctx, x, y, w, h, color) {

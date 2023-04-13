@@ -34,6 +34,18 @@
 </head>
 
 <body>
+    <div class="modal fade" id="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Passenger Key</h5>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="assets/key.png" alt="key" id="key-img">
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-2 col-md-1 col-lg-1">
             <img src="assets/favicon.svg" alt="logo">
@@ -177,7 +189,15 @@
             </div>
             <div class="col">
                 <canvas id="main-window"></canvas>
+
             </div>
+        </div>
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col">
+                <button id="key-btn" data-bs-toggle="modal" data-bs-target="#modal">key</button>
+            </div>
+
         </div>
 
         <div class="row">
