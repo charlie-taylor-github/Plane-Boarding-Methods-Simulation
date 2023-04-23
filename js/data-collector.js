@@ -20,7 +20,7 @@ class DataCollector {
     }
 
     update(interval) {
-        if (this.boardedPassengers == this.totalPassengers) return;
+        if (this.boardedPassengers == this.totalPassengers) return this.percentageBoarded = 100;
         this.totalBoardingTime += interval;
         this.averageBoardingTime = this.totalBoardingTime / this.boardedPassengers;
         this.averageSeatShuffles = this.totalSeatShuffles / this.totalPassengers;
